@@ -1,0 +1,49 @@
+
+; You may customize this and other start-up templates;
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+.stack 100h
+
+; add your code here
+
+.data  ; initializing the data segments
+
+
+.code ; code segment
+main proc
+.startup ; starts the ALP
+
+mov ah,01h ; accepts the character from keyboard with echo
+
+int 21h ; DOS interrupt
+
+mov dl,al ; cpmy al content to dl register
+
+mov ah,02h ; display the character stored in 'dl'
+
+int 21h ;
+
+.exit ;
+
+main endp
+
+end main
+
+
+'
+mov ax,1
+again:
+cmp ax,3
+jae end
+inc ax
+jmp again
+
+end:
+'
+ret
+
+
+
+
+
+

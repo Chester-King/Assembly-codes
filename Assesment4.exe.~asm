@@ -1,0 +1,93 @@
+
+; You may customize this and other start-up templates;
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+.stack 100h
+
+.data
+
+text db "17BCE2181-$"
+text2 db "Madhur-$"
+text3 db "Dixit-$"
+text4 db "MicroDA-$"
+filename db "17BCE2181.txt"
+handler dw ?
+
+.code
+
+; initialize data statement
+
+mov ax,@data
+mov ds,ax
+
+; create file
+
+mov ah,3ch
+mov cx,0
+mov dx,offset filename
+int 21h
+
+; preserve the handler
+
+mov handler,ax
+
+; writing string
+
+mov ah,40h
+mov bx,handler
+mov cx,10
+
+mov dx,offset text
+int 21h
+
+;------------------
+
+
+mov ah,40h
+mov bx,handler
+mov cx,10
+
+mov dx,offset text2
+int 21h
+
+;-------------------
+
+
+mov ah,40h
+mov bx,handler
+mov cx,10
+
+mov dx,offset text3
+int 21h
+
+;-------------------
+
+mov ah,40h
+mov bx,handler
+mov cx,10
+
+mov dx,offset text4
+int 21h
+
+;-------------------
+
+; close file
+
+mov ah,3ch
+mov bx,handler
+int 21h
+
+
+
+; Finish the program
+
+mov ax,4c00h
+int 21h
+
+ret
+
+
+
+
+
+

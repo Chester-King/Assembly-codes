@@ -1,0 +1,69 @@
+.model small
+.stack
+.data
+
+uMaxLength db 255
+uActualLength db ?
+szFileName db 255 dup (?)
+buffer db 100 dup (?), '$'
+
+x db 'Enter the filename', '$'
+
+.code
+
+;main   proc
+
+mov ax, seg uMaxLength
+mov ds, ax
+
+mov ah, 09h
+lea dx, x ;write input message on the screen
+int 21h
+
+
+mov ah, 0ah
+lea dx, uMaxLength ;read file name
+int 21h
+
+mov al, uActualLength
+xor ah, ah
+mov si, ax
+mov szFileName[si], 0 ;make sz see 0A function
+
+mov ah, 3dh
+xor al, al
+lea dx, szFileName
+int 21h ;open the file
+
+mov bx, ax
+
+repeat:
+
+mov ah, 3fh
+lea dx, buffer
+mov cx, 100
+int 21h
+
+mov si, ax
+mov buffer[si], '$'
+
+mov ah, 09h
+int 21h ;print on screen
+
+
+
+cmp si, 100
+je repeat
+
+jmp stop;jump to end
+
+stop:
+
+mov ax, 4c00h
+int 21h
+
+;main   endp
+;end main
+
+
+

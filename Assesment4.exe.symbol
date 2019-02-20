@@ -1,0 +1,17 @@
+< THE SYMBOL TABLE >  Assesment4.exe  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+TEXT                     	00000     	1         	VAR       	data      
+TEXT2                    	0000B     	1         	VAR       	data      
+TEXT3                    	00013     	1         	VAR       	data      
+TEXT4                    	0001A     	1         	VAR       	data      
+FILENAME                 	00023     	1         	VAR       	data      
+HANDLER                  	00030     	2         	VAR       	data      
+CODE                     	00014     	-5        	SEGMENT   	(ITSELF)  
+===================================================================================================
+[ 20-02-2019  --  19:11:24 ] 
+< END >
+ 
